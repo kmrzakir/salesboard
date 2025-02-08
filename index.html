@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>salesboard</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main>
+      <h1>Salesboard 🔔</h1>
+      <img src="./images/logo.jpeg" alt="my iamge" />
+
+      <!-- products section -->
+      <section class="products_section">
+        <button class="start_product">⭐</button>
+        <button class="fire_product">🔥</button>
+      </section>
+
+      <!-- live sales section -->
+      <section class="live_sales_section">
+        <h2>Live Sales - <span class="live_sales_count">0</span></h2>
+        <input type="text" readonly class="live_sales_input" />
+      </section>
+
+      <!-- live achivements section -->
+      <section class="live_achievements_section">
+        <h2>
+          Live Achievements - <span class="live_achievements_count">0</span>
+        </h2>
+        <input type="text" readonly class="live_achievements_input" />
+      </section>
+
+      <section class="totals_section">
+        <div class="total_revenue_div">
+          <h2>Total Revenue</h2>
+          <input type="text" readonly class="total_revenue_input" />
+        </div>
+        <div class="total_commission_div">
+          <h2>Total Commission</h2>
+          <input type="text" readonly class="total_commission_input" />
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
