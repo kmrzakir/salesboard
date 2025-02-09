@@ -12,6 +12,10 @@ let fireProduct = {
   commision: 75,
 };
 
+// 💰 at 2500 revenue
+// 🔔 at first
+// 🏆 at 15
+
 let data = {
   totalCommision: 0,
   totalRevenue: 0,
@@ -37,6 +41,8 @@ const live_achievements_count = document.querySelector(
   ".live_achievements_count"
 );
 
+const clearAllIcon = document.querySelector(".clearAllIcon");
+
 uploadData();
 
 starButton.addEventListener("click", () => {
@@ -49,7 +55,7 @@ fireButton.addEventListener("click", () => {
 
 function saveDataLocally(productObject) {
   // get locally stored data
-  const localStoredData = JSON.parse(localStorage.getItem("data"));
+  const localStoredData = JSON.parse(localStorage.getItem("data")) || data;
 
   data.totalCommision =
     localStoredData.totalCommision + productObject.commision;
@@ -75,15 +81,17 @@ function saveDataLocally(productObject) {
     data.totalNumberOfLiveAchivements += 1;
     data.totalLiveAchivements = data.totalLiveAchivements + "🏆";
   }
-
+  // save data locally
+  localStorage.setItem("data", JSON.stringify(data));
   uploadData();
 }
 
 function uploadData() {
-  // save data locally
-  localStorage.setItem("data", JSON.stringify(data));
-
-  // get locally stored data
+  console.log(localStorage.length);
+  if (localStorage.length == 0) {
+    localStorage.setItem("data", JSON.stringify(data));
+    return;
+  }
   const localStoredData = JSON.parse(localStorage.getItem("data"));
 
   live_sales_input.value = localStoredData.totalLiveSales;
@@ -94,3 +102,17 @@ function uploadData() {
   live_achievements_count.innerHTML =
     localStoredData.totalNumberOfLiveAchivements;
 }
+
+clearAllIcon.addEventListener("click", () => {
+  localStorage.clear();
+  Object.keys(data).forEach((key) => {
+    if (typeof data[key] === "number") data[key] = 0; // Reset numbers to 0
+    else data[key] = ""; // Reset strings to empty
+  });
+  live_sales_input.value = "";
+  live_achievements_input.value = "";
+  total_commission_input.value = "";
+  total_revenue_input.value = "";
+  live_sales_count.innerHTML = 0;
+  live_achievements_count.innerHTML = 0;
+});
